@@ -32,11 +32,11 @@ Firstly, we cleaned the data to remove observation with missing results and erro
 
 #### Figure 1
 
-![](final_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](ECO-395M/1.png)
 
 #### Figure 2
 
-![](final_files/figure-markdown_github/unnamed-chunk-4-1.png)    
+![](ECO-395M/2.png)
 
 Figure 1 shows the difference in distribution of age for the three groups. The peak of adoption is when the cats are 50 days to 150 days of age, and the peak of death are below 50 days of age. Figure 2 shows the distribution of neuter status, whether cat is kitten or older, and sex for the three outcome groups. For unneutered group, adoption tends to happen to kitten and might happen more often to female. Adoption rate is much higher for neutered group no matter the age or gender. Within neutered group, kitten is more preferred and male kitten is the most preferred subgroup.
 
@@ -53,7 +53,7 @@ We re-label the result to be dummy variable denoting adoption or not. We deploy 
 
 #### Figure 3
 
-![](final_files/figure-markdown_github/unnamed-chunk-6-1.png)    
+![](ECO-395M/3.png) 
 
 The tree we grow is shown in figure 3: top decision node represents if the cat has been neutered. If no, the tree predicts that it will not be adopted though the probability of adoption will differ conditional on if it has a name and if it is older than 52 days. If neuter status is yes, tree predicts no adoption for cats less than 43 days of age. Neutered cats of age 44 days to 182 days are likely to be adopted, and older cats are predicted to be adopted if they have a name.
    
@@ -67,7 +67,7 @@ We also used cross validation to see if the tree can be pruned as in figure 4. S
 
 #### Figure 4
 
-![](final_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](ECO-395M/4.png)
 
 Next, we used bagging and random forest to improve the decision tree. Since there are 12 explanatory variables, we loop from 1 to 12 as the number of variables randomly selected at each decision nodes. In each iteration, we bootstrap from original dataset and build many slightly different trees. We take the average of those trees as if we are using majority voting to predict the likelihood that the animal will be adopted. We plotted the mean squared error curve for out-of-bag (all bootstrap samples except itself, similar to leave-one-out) error and test set error.
 
@@ -75,17 +75,19 @@ Bagging is random forest where we select all 12 variables in each decision node.
 
 #### Figure 5
 
-![](final_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](ECO-395M/5.png)
 
 We also tried boosting to build 10000 shallow trees and stack them together to reduce the variance. Figure 6 is the variance importance plot by boosting. We see that age, neuter, name, main color and coat pattern are the most important factors. The partial dependence plots are in the appendix.
 
 #### Figure 6
 
-![](final_files/figure-markdown_github/unnamed-chunk-12-1.png) Boosting yields an error curve as in figure 7. By creating a sufficiently large number of shallow trees, we could achieve an MSE of 0.103, which is lower than the random forest error marked as the horizontal line.
+![](ECO-395M/6.png) 
+
+Boosting yields an error curve as in figure 7. By creating a sufficiently large number of shallow trees, we could achieve an MSE of 0.103, which is lower than the random forest error marked as the horizontal line.
 
 #### Figure 7
 
-![](final_files/figure-markdown_github/unnamed-chunk-14-1.png)    
+![](ECO-395M/7.png)  
 
 ### Conclusion
 
@@ -112,7 +114,9 @@ Overall, the tree with boosting and random forest model can be used to predict c
 
 Boosting - partial dependent plot of the important variables.
 
-![](final_files/figure-markdown_github/unnamed-chunk-15-1.png)![](final_files/figure-markdown_github/unnamed-chunk-15-2.png)![](final_files/figure-markdown_github/unnamed-chunk-15-3.png)
+![](ECO-395M/8.png)
+![](ECO-395M/9.png)
+![](ECO-395M/10.png)
 
 The disease and death rates are high (reflected in higher frequency in euthanasia and die) for newborn kittens. People tend to adopt slightly older kittens and the partial dependence is stable over age. Partial dependence drops once the age become larger than 10 years.
 
