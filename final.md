@@ -32,11 +32,11 @@ Firstly, we cleaned the data to remove observation with missing results and erro
 
 #### Figure 1
 
-![](ECO-395M/1.png)
+![](/1.png)
 
 #### Figure 2
 
-![](ECO-395M/2.png)
+![](/2.png)
 
 Figure 1 shows the difference in distribution of age for the three groups. The peak of adoption is when the cats are 50 days to 150 days of age, and the peak of death are below 50 days of age. Figure 2 shows the distribution of neuter status, whether cat is kitten or older, and sex for the three outcome groups. For unneutered group, adoption tends to happen to kitten and might happen more often to female. Adoption rate is much higher for neutered group no matter the age or gender. Within neutered group, kitten is more preferred and male kitten is the most preferred subgroup.
 
@@ -67,7 +67,7 @@ We also used cross validation to see if the tree can be pruned as in figure 4. S
 
 #### Figure 4
 
-![](ECO-395M/4.png)
+![](/4.png)
 
 Next, we used bagging and random forest to improve the decision tree. Since there are 12 explanatory variables, we loop from 1 to 12 as the number of variables randomly selected at each decision nodes. In each iteration, we bootstrap from original dataset and build many slightly different trees. We take the average of those trees as if we are using majority voting to predict the likelihood that the animal will be adopted. We plotted the mean squared error curve for out-of-bag (all bootstrap samples except itself, similar to leave-one-out) error and test set error.
 
